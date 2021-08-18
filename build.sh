@@ -4,7 +4,7 @@ PROJECT_TAG=latest
 go mod tidy
 _buildtime="$(date '+%Y-%m-%d-%H-%M-%S')"
 _commitid=${CI_COMMIT_SHORT_SHA}
-go build -ldflags '-X "main.commitid='"${_commitid}"'" -X "main.buildtime='"${_buildtime}"'" -X "main.version='"${PROJECT_TAG}"'"' -o ${PROJECT_NAME}_${PROJECT_TAG}
+GOOS=linux GOARCH=amd64 go build -ldflags '-X "main.commitid='"${_commitid}"'" -X "main.buildtime='"${_buildtime}"'" -X "main.version='"${PROJECT_TAG}"'"' -o ${PROJECT_NAME}_${PROJECT_TAG}
 
 cat > run.sh <<EOF
 #!/bin/bash 
