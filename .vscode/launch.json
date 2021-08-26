@@ -13,8 +13,8 @@
             "remotePath": "",
             "port": 2345,
             "host": "127.0.0.1",
-            "program": "${workspaceFolder}/Server.go",
-            "env": {"port":"8080"},
+            "program": "${workspaceFolder}",
+            "env": {"port":"8080","mysql":"root:etsajJFoyGGxaOHD@tcp(35.236.147.93:3306)/test?parseTime=true","mongo":"mongodb://35.194.200.98:27017/test"},
             "args": [],
             "showLog": true,
             "debugAdapter": "legacy"
