@@ -15,4 +15,9 @@ curl -X POST http://35.185.164.107:8080/v1/public/singlehttp -H 'Content-Type: a
 telepresence connect
 telepresence quit
 telepresence uninstall --everything
-telepresence intercept -n aaa a1 --port 3000:3000
+telepresence intercept -n aaa a1 --port 3000:http
+telepresence leave a1-aaa
+telepresence list -n aaa
+
+
+
