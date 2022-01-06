@@ -35,7 +35,7 @@ var pool uint64 = 1
 func main() {
 	SetReadConnectionInfo("test", os.Getenv("mysql"), 1, 1)
 	rdb = redis.NewClusterClient(&redis.ClusterOptions{
-		Addrs:        []string{"redis:6379"},
+		Addrs:        []string{"redis.aaa:6379"},
 		Password:     "", // no password set
 		PoolSize:     1,
 		MinIdleConns: 1,
@@ -49,6 +49,10 @@ func main() {
 		Database:         "test",
 		MaxPoolSize:      &pool,
 		MinPoolSize:      &pool,
+		Auth: &qmgo.Credential{
+			Username: "root",
+			Password: "1234",
+		},
 	}
 	client, err := qmgo.Open(ctxbg, cfg)
 	if err != nil {
@@ -67,6 +71,13 @@ func main() {
 		if err != nil {
 			panic(err.Error())
 		}
+	}()
+	go func() {
+		app1 := fiber.New()
+		app1.Get("/", func(c *fiber.Ctx) error {
+			return c.SendString("Hello, World 👋!")
+		})
+		app1.Listen(":3000")
 	}()
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
@@ -195,15 +206,19 @@ func singlehttp(c *fiber.Ctx) error {
 			return c.Status(500).SendString("")
 		}
 		defer conn.Commit()
-		var s1 int
-		err = conn.QueryRow("SELECT * FROM test").Scan(&s1)
+		sql := "INSERT INTO test(test) VALUES ('abc')"
+		_, err = conn.Exec(sql)
 		if err != nil {
 			fmt.Println("err", err.Error())
 			return c.Status(500).SendString("")
 		}
 	}
 	if cs.CallMongo == 1 {
-		qmgoDB.Collection("test").InsertOne(ctxbg, &test{})
+		_, err = qmgoDB.Collection("test").InsertOne(ctxbg, &test{})
+		if err != nil {
+			fmt.Println("err", err.Error())
+			return c.Status(500).SendString("")
+		}
 		find := bson.M{}
 		find["type"] = bson.M{"$in": []int{1}}
 		if _, err = qmgoDB.Collection("test").Find(ctxbg, find).Count(); err != nil {
