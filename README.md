@@ -12,12 +12,12 @@
 
 curl -X POST http://35.185.164.107:8080/v1/public/singlehttp -H 'Content-Type: application/json' -d '{"Req":"abc","Http_fail_rate":0,"Http_Status_code":200,"Http_Delay_rate":0,"Http_Delay":0,"CallMysql":1,"CallMongo":1}'
 
-telepresence connect
-telepresence quit
-telepresence uninstall --everything
-telepresence intercept -n aaa a1 --port 3000:http
-telepresence leave a1-aaa
-telepresence list -n aaa
+telepresence connect<br>
+telepresence quit<br>
+telepresence uninstall --everything<br>
+telepresence intercept -n aaa a1 --port 3000:http<br>
+telepresence leave a1-aaa<br>
+telepresence list -n aaa<br>
 
 
 
