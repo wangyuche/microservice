@@ -1,8 +1,8 @@
 apiVersion: v1
 data:
   port: "8080"
-  mysql: "root:dfjns@tcp(mariadb.aaa:3306)/test?parseTime=true"
-  mongo: "mongodb://mongo.aaa:27017/test"
+  mysql: "root:yile.net@tcp(mysql.arieswang:3306)/test?parseTime=true"
+  mongo: "mongodb://mongodb.arieswang:27017/test"
 kind: ConfigMap
 metadata:
   labels:

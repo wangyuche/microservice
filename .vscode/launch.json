@@ -14,7 +14,7 @@
             "port": 2345,
             "host": "127.0.0.1",
             "program": "${workspaceFolder}",
-            "env": {"port":"8080","mysql":"root:dfjns@tcp(mariadb.aaa:3306)/test?parseTime=true","mongo":"mongodb://mongo.aaa:27017/test"},
+            "env": {"port":"8080","mysql":"root:yile.net@tcp(mysql.arieswang:3306)/test?parseTime=true","mongo":"mongodb://mongodb.arieswang:27017/test"},
             "args": [],
             "showLog": true,
             "debugAdapter": "legacy"

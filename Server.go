@@ -35,7 +35,7 @@ var pool uint64 = 1
 func main() {
 	SetReadConnectionInfo("test", os.Getenv("mysql"), 1, 1)
 	rdb = redis.NewClusterClient(&redis.ClusterOptions{
-		Addrs:        []string{"redis.aaa:6379"},
+		Addrs:        []string{"redis.arieswang:6379"},
 		Password:     "", // no password set
 		PoolSize:     1,
 		MinIdleConns: 1,
@@ -51,7 +51,7 @@ func main() {
 		MinPoolSize:      &pool,
 		Auth: &qmgo.Credential{
 			Username: "root",
-			Password: "1234",
+			Password: "yile.net",
 		},
 	}
 	client, err := qmgo.Open(ctxbg, cfg)
